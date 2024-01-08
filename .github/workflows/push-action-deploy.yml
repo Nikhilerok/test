@@ -1,9 +1,17 @@
-name: SFDX-CLI Deploy from Repository
-on: [push]
+name: SFDX Test Run on Merge to Main
+
+on:
+  push:
+    branches:
+      - main
+    # Ensure tests run only for merges, not direct pushes to main
+    types: [closed]
+
 jobs:
-  SFDX-CLI-Deploy:
+  test:
     runs-on: ubuntu-latest
-    steps:
+
+ steps:
       - run: echo " GitHub Action running on ${{ runner.os }}"
       - run: echo " Retrieving ${{ github.ref }} from ${{ github.repository }}."
       - uses: actions/checkout@v2
@@ -12,3 +20,5 @@ jobs:
       - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
       - run: sfdx force:auth:jwt:grant --clientid=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwtkeyfile=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --setdefaultdevhubusername
       - run: sfdx force:source:deploy --manifest=manifest/package.xml --testlevel=RunLocalTests -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
+	  
+	  
