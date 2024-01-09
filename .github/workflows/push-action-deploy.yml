@@ -2,8 +2,11 @@ name: SFDX-CLI Deploy from Repository
 
 on:
   push:
-    branches: [main]  # Only trigger on pushes to the main branch
-    types: [pull_request]  # Trigger only on pull requests
+    branches:
+      - main
+      - '*/*'  # Include pushes to any branch
+  pull_request:
+    types: [closed]  # Trigger when a pull request is closed (merged)
 
 jobs:
   SFDX-CLI-Deploy:
