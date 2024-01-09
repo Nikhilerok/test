@@ -1,23 +1,25 @@
+name: Deploy to Salesforce
+
 on:
   push:
     branches:
       - "main"
-name: Deploy to Salesforce
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
 
-      - name: Setup Node
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "14"
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        id: npm_cache_id
+      - name: Cache Node Modules
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
@@ -26,19 +28,19 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        if: steps.npm_cache_id.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: SFDX Auth
+      - name: Salesforce Authentication
         env:
-          SALESFORCE_DEVHUB_USERNAME: ${{ secrets.SALESFORCE_DEVHUB_USERNAME  }}
-          SALESFORCE_CONSUMER_KEY: ${{ secrets.SALESFORCE_CONSUMER_KEY  }}
-          SALESFORCE_JWT_SECRET_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY  }}
+          SALESFORCE_DEVHUB_USERNAME: ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
+          SALESFORCE_CONSUMER_KEY: ${{ secrets.SALESFORCE_CONSUMER_KEY }}
+          SALESFORCE_JWT_SECRET_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
         run: |
-          echo "$SALESFORCE_JWT_SECRET_KEY " > server.key
+          echo "${SALESFORCE_JWT_SECRET_KEY}" > server.key
           npx sfdx force:auth:jwt:grant \
-            --username $SALESFORCE_DEVHUB_USERNAME --setdefaultdevhubusername \
-            --clientid $SALESFORCE_CONSUMER_KEY \
+            --username "${SALESFORCE_DEVHUB_USERNAME}" --setdefaultdevhubusername \
+            --clientid "${SALESFORCE_CONSUMER_KEY}" \
             --jwtkeyfile server.key
 
       - name: Build, Test & Deploy
@@ -51,7 +53,7 @@ jobs:
           TEST_LEVEL: RunLocalTests
           WAIT: 120
 
-      - name: Clean up files
+      - name: Clean Up Files
         run: node ./scripts/node-scripts/clean-up-files/clean-up.js
 
       - name: Git Auto Commit
