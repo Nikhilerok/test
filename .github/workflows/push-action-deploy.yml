@@ -1,6 +1,6 @@
 
 
-name: SFDX-CLI SCRATCH MAIN
+name: SFDX-CLI  MAIN
  
 on: 
   push:
