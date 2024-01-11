@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - DEVELOP_1 
 
 
 jobs:
