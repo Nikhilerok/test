@@ -1,9 +1,6 @@
-name: SFDX-CLI Deploy from Repository
+name: scratch env
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 
 jobs:
