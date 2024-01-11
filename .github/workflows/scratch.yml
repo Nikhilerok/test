@@ -1,8 +1,6 @@
-name: scratch env
 
-on: [push]
 
-name: SFDX-CLI Deploy from Repository
+name: SFDX-CLI SCRATCH MAIN
 
 on:
   push:
