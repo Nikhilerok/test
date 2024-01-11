@@ -1,5 +1,7 @@
-name: scratch env samples
 
+
+name: SFDX-CLI SCRATCH MAIN
+ 
 on:
   push:
     branches:
