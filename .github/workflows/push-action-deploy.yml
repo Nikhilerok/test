@@ -1,13 +1,8 @@
 
-name: SCRATCHfrom Repository
 
-on:
-  push:
-    branches:
-      -SCRATCH_MAIN
-      - '*/*'  # Include pushes to any branch
-  pull_request:
-    types: [closed]  # Trigger when a pull request is closed (merged)
+name: scratch update
+
+on: [push]
 
 jobs:
   SFDX-CLI-Deploy:
