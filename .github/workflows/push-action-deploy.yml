@@ -5,6 +5,7 @@
 on: 
   push:
     branches:
+    - SCRATCH_MAIN
       - main
       - '*/*'  # Include pushes to any branch
   pull_request:
