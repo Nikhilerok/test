@@ -3,7 +3,7 @@ name: SFDX-CLI Deploy from Repository
 on:
   push:
     branches:
-      - main
+      - DEVELOP_1
     types: [closed]  # Trigger only on pull request merges
 jobs:
   SFDX-CLI-Deploy:
