@@ -1,6 +1,6 @@
 
 
-name: SFDX-CLI SCRATCH MAIN ENV
+
  
 on: 
   push:
