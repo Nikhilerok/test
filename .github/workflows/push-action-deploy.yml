@@ -1,11 +1,10 @@
 
 
-name: SFDX-CLI SCRATCH MAIN
+name: SFDX-CLI SCRATCH MAIN ENV
  
 on: 
   push:
     branches:
-      - SCRATCH_MAIN
       - main
       - '*/*'  # Include pushes to any branch
   pull_request:
