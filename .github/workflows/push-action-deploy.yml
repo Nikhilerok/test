@@ -1,10 +1,13 @@
-name: SFDX-CLI Deploy from Repository
+
+name: SCRATCHfrom Repository
 
 on:
   push:
     branches:
-      - main
-
+      -SCRATCH_MAIN
+      - '*/*'  # Include pushes to any branch
+  pull_request:
+    types: [closed]  # Trigger when a pull request is closed (merged)
 
 jobs:
   SFDX-CLI-Deploy:
