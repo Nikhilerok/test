@@ -3,11 +3,11 @@ name: SFDX-CLI Deploy from Feature Branch
 on:
   push:
     branches:
-
       - 'feature/*'  # Only trigger on pushes to feature branches
-
       - main
       - '*/*'  # Include pushes to any branch
+      paths:
+            - 'force-app/**'
   pull_request:
     types: [closed]  # Trigger when a pull request is closed (merged)
  
