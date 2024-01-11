@@ -2,7 +2,7 @@
 
 name: SFDX-CLI SCRATCH MAIN
  
-on:
+on: 
   push:
     branches:
       - SCRATCH_MAIN
