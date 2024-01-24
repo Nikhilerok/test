@@ -1,6 +1,6 @@
 
-name: GitHub Actions Demo in scratch org
-run-name: ${{ github.actor }} is testing out GitHub Actions in scratch org 🚀
+name: GitHub Actions Demo in  org
+run-name: ${{ github.actor }} is testing out GitHub Actions in  org 🚀
  
 on: 
   push:
