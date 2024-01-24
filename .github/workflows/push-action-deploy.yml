@@ -3,7 +3,7 @@ name: GitHub Actions Demo in  org
 run-name: ${{ github.actor }} is testing out GitHub Actions in  org 🚀
  
 on: 
-  push:
+  push: 
     branches:
     - SCRATCH_MAIN
       - main
