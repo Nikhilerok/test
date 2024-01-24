@@ -1,12 +1,11 @@
-name: SFDX-CLI  MAIN
-
-  
+name: GitHub Actions Demo in Dev org
+run-name: ${{ github.actor }} is testing out GitHub Actions in Dev org 🚀
+ 
 on: 
   push:
     branches:
     - SCRATCH_MAIN
       - main
-      - '*/*'  # Include pushes to any branch
   pull_request:
     types: [closed]  # Trigger when a pull request is closed (merged)
 
